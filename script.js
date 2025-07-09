@@ -31,13 +31,13 @@ function playGame(humanChoice, computerChoice) {
 	} else {
 		switch(humanChoice) {
 		case "rock":
-			computerChoice == "paper" ? (humanScore += 1) : (computerScore +=1); 
+			computerChoice == "scissors" ? (humanScore += 1) : (computerScore +=1); 
 			break;
 		case "paper":
 			computerChoice == "rock" ? (humanScore += 1) : (computerScore +=1); 
 			break;
 		case "scissors":
-			computerChoice == "rock" ? (humanScore += 1) : (computerScore +=1); 
+			computerChoice == "paper" ? (humanScore += 1) : (computerScore +=1); 
 			break;
 		}
 		return true;
@@ -45,16 +45,23 @@ function playGame(humanChoice, computerChoice) {
 	
 }
 
-// Play the game for 5 rounds
-for(i = 0; i<5; i++) {
+
+
+for(let i = 0; i < 5; i++) {
 	const humanSelection = getHumanChoice();
 	const computerSelection = getComputerChoice();
 
-	if (playGame(humanSelection, computerSelection)) {
-	console.log("Human : " + humanScore);
-	console.log("Computer: " + computerScore);
-	} else {
+	if (!(playGame(humanSelection, computerSelection))) {
 		console.log("It's a tie!");
 	}
 
+	
+	console.log("Human : " + humanSelection);
+	console.log("Computer: " + computerSelection);
+
+	console.log("Human : " + humanScore);
+	console.log("Computer: " + computerScore);
+
+	console.log("-------------------------------------------------------");
 }
+
