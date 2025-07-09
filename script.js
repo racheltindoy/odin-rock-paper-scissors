@@ -46,22 +46,30 @@ function playGame(humanChoice, computerChoice) {
 }
 
 
+function playRound() {
 
-for(let i = 0; i < 5; i++) {
-	const humanSelection = getHumanChoice();
-	const computerSelection = getComputerChoice();
+	for(let i = 1; i <= 5; i++) {
+		const humanSelection = getHumanChoice();
+		const computerSelection = getComputerChoice();
 
-	if (!(playGame(humanSelection, computerSelection))) {
-		console.log("It's a tie!");
+		if (!(playGame(humanSelection, computerSelection))) {
+			console.log("It's a tie!");
+		} 
+
+		console.log("Human : " + humanSelection);
+		console.log("Computer: " + computerSelection);
+
+		console.log("Human : " + humanScore);
+		console.log("Computer: " + computerScore);
+
+		console.log("ROUND: " + i);
+
+		console.log("-------------------------------------------------------");
+		
 	}
 
-	
-	console.log("Human : " + humanSelection);
-	console.log("Computer: " + computerSelection);
-
-	console.log("Human : " + humanScore);
-	console.log("Computer: " + computerScore);
-
-	console.log("-------------------------------------------------------");
+	return humanScore > computerScore ? "You WIN!" : "COMPUTER WINS";
 }
 
+
+console.log(playRound());
