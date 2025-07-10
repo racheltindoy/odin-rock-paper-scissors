@@ -47,29 +47,52 @@ function playGame(humanChoice, computerChoice) {
 
 
 function playRound() {
+	for(i=1; i<=5; i++) {
+		let humanSelection = getHumanChoice();
+		let computerSelection = getComputerChoice();
+		let playGameResult = playGame(humanSelection, computerSelection);
+		// console.log(`${humanSelection} ${computerSelection} ${playGameResult}`);
 
-	for(let i = 1; i <= 5; i++) {
-		const humanSelection = getHumanChoice();
-		const computerSelection = getComputerChoice();
-
-		if (!(playGame(humanSelection, computerSelection))) {
+		if(playGameResult === false) {
 			console.log("It's a tie!");
-		} 
-
-		console.log("Human : " + humanSelection);
-		console.log("Computer: " + computerSelection);
-
-		console.log("Human : " + humanScore);
-		console.log("Computer: " + computerScore);
-
-		console.log("ROUND: " + i);
-
-		console.log("-------------------------------------------------------");
-		
+			console.log("Human : " + humanSelection);
+			console.log("Computer: " + computerSelection);
+		} else {
+			console.log("Someone wins");
+			console.log("Human : " + humanSelection);
+			console.log("Computer: " + computerSelection);
+		}
 	}
-
-	return humanScore > computerScore ? "You WIN!" : "COMPUTER WINS";
 }
 
 
-console.log(playRound());
+playRound();
+
+
+// function playRound() {
+
+// 	for(let i = 1; i <= 5; i++) {
+// 		const humanSelection = getHumanChoice();
+// 		const computerSelection = getComputerChoice();
+
+// 		if (!(playGame(humanSelection, computerSelection))) {
+// 			console.log("It's a tie!");
+// 		} 
+
+// 		console.log("Human : " + humanSelection);
+// 		console.log("Computer: " + computerSelection);
+
+// 		console.log("Human : " + humanScore);
+// 		console.log("Computer: " + computerScore);
+
+// 		console.log("ROUND: " + i);
+
+// 		console.log("-------------------------------------------------------");
+		
+// 	}
+
+// 	return humanScore > computerScore ? "You WIN!" : "COMPUTER WINS";
+// }
+
+
+// console.log(playRound());
