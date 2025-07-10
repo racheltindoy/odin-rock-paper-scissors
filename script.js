@@ -1,6 +1,8 @@
 // Initialize scores for computer and human players
 let computerScore = 0;
 let humanScore = 0;
+let humanWinTracker = false;
+let computerWinTracker = false;
 
 // Function to get the human player's choice via prompt
 function getHumanChoice() {
@@ -26,18 +28,27 @@ function getComputerChoice() {
 // Function to play a single round of the game
 function playGame(humanChoice, computerChoice) {
 
+	humanWinTracker = false;
+	computerWinTracker = false;
+
 	if (humanChoice === computerChoice) {
 		return false;
 	} else {
 		switch(humanChoice) {
 		case "rock":
-			computerChoice == "scissors" ? (humanScore += 1) : (computerScore +=1); 
+			computerChoice == "scissors" 
+			? (humanScore += 1, humanWinTracker = true) 
+			: (computerScore +=1, computerWinTracker = true); 
 			break;
 		case "paper":
-			computerChoice == "rock" ? (humanScore += 1) : (computerScore +=1); 
+			computerChoice == "rock" 
+			? (humanScore += 1, humanWinTracker = true) 
+			: (computerScore +=1, computerWinTracker = true); 
 			break;
 		case "scissors":
-			computerChoice == "paper" ? (humanScore += 1) : (computerScore +=1); 
+			computerChoice == "paper" 
+			? (humanScore += 1, humanWinTracker = true) 
+			: (computerScore +=1, computerWinTracker = true); 
 			break;
 		}
 		return true;
@@ -51,48 +62,31 @@ function playRound() {
 		let humanSelection = getHumanChoice();
 		let computerSelection = getComputerChoice();
 		let playGameResult = playGame(humanSelection, computerSelection);
-		// console.log(`${humanSelection} ${computerSelection} ${playGameResult}`);
 
+		console.log(`\n🎮 Round ${i} Results:`);
+		console.log(`👤 Human chose: ${humanSelection}`);
+		console.log(`🤖 Computer chose: ${computerSelection}`);
 		if(playGameResult === false) {
-			console.log("It's a tie!");
-			console.log("Human : " + humanSelection);
-			console.log("Computer: " + computerSelection);
+			console.log("🤝 It's a tie!");
 		} else {
-			console.log("Someone wins");
-			console.log("Human : " + humanSelection);
-			console.log("Computer: " + computerSelection);
+			if (humanWinTracker) {
+				console.log("🏆 You won this round!");
+			} else {
+				console.log("💻 Computer won this round!");
+			}
 		}
 	}
+
+	console.log("\n\n-------------------------------------------------------");
+	console.log("🎉 FINAL RESULT 🎉");
+	console.log(`Scoreboard: Human ${humanScore} - ${computerScore} Computer`);
+
+	humanScore > computerScore 
+	? console.log("🏆 YOU WIN THE GAME!") 
+	: console.log("💻 COMPUTER WINS THE GAME!");
+	
+	console.log("-------------------------------------------------------");
 }
 
 
 playRound();
-
-
-// function playRound() {
-
-// 	for(let i = 1; i <= 5; i++) {
-// 		const humanSelection = getHumanChoice();
-// 		const computerSelection = getComputerChoice();
-
-// 		if (!(playGame(humanSelection, computerSelection))) {
-// 			console.log("It's a tie!");
-// 		} 
-
-// 		console.log("Human : " + humanSelection);
-// 		console.log("Computer: " + computerSelection);
-
-// 		console.log("Human : " + humanScore);
-// 		console.log("Computer: " + computerScore);
-
-// 		console.log("ROUND: " + i);
-
-// 		console.log("-------------------------------------------------------");
-		
-// 	}
-
-// 	return humanScore > computerScore ? "You WIN!" : "COMPUTER WINS";
-// }
-
-
-// console.log(playRound());
