@@ -3,17 +3,21 @@ let computerScore = 0;
 let humanScore = 0;
 
 
+const playBtn = document.querySelector('#play');
+
+
 // Function to get the human player's choice via buttons
 function getHumanChoice() {
 	let choices = document.querySelector('#choices');
 	let i = 1;
 
 	choices.addEventListener('click', (e) => {
+
 		let humanWinTracker = false;
 		let computerWinTracker = false;
 		
 		let computerSelection = getComputerChoice();
-		let humanSelection = e.target.innerText;
+		let humanSelection = e.target.parentElement.id;
 
 		let playGameResult = playGame(computerSelection, humanSelection, humanWinTracker, computerWinTracker);
 		// ----------------------------------------------------
@@ -128,9 +132,4 @@ function playRound(i, humanSelection, computerSelection, playGameResult, humanWi
 		return false;
 	}
 
-}
-
-
-if(getHumanChoice()) {
-	getHumanChoice();
 }

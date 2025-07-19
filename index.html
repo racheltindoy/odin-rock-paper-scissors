@@ -8,39 +8,44 @@
 </head>
 <body>
 
-	<h1>Rock Paper Scissors!</h1>
+	<main>
+		<h1>Rock Paper Scissors!</h1>
 
-	<div id="main_con">
-		<h2>Round 1</h2>
+		<div id="main_con">
+			<h2>Round 1</h2>
 
-		<div class="mid_box_con">
-			<div class="mid_box1">
-				<img src="./images/question-mark-human.png">
-				<span class="d_block">Human</span>
+			<div class="mid_box_con">
+				<div class="mid_box1">
+					<img src="./images/question-mark-human.png">
+					<span class="d_block">Human</span>
+				</div>
+
+				<span class="d_block vs">vs</span>
+				
+				<div class="mid_box1">
+					<img src="./images/question-mark-computer.png">
+					<span class="d_block">Computer</span>
+				</div>
 			</div>
 
-			<span class="d_block">vs</span>
-			
-			<div class="mid_box1">
-				<img src="./images/question-mark-computer.png">
-				<span class="d_block">Computer</span>
+			<h2>It's a tie!</h2>
+
+			<div class="btm_box_con">
+				<div class="btm_box1"><span class="d_block score_label">Human</span><span class="d_block score_num">0</span></div>
+				<div class="btm_box2"><span class="d_block score_label">Computer</span><span class="d_block score_num">0</span></div>
 			</div>
+
 		</div>
 
-		<h2>It's a tie!</h2>
-
-		<div class="btm_box_con">
-			<div class="btm_box1"><span class="d_block score_label">Human</span><span class="d_block score_num">0</span></div>
-			<div class="btm_box2"><span class="d_block score_label">Computer</span><span class="d_block score_num">0</span></div>
+		<div id="choices">
+			<button id="rock"><img src="./images/human-rock.png">rock</button>
+			<button id="paper"><img src="./images/human-paper.png">paper</button>
+			<button id="scissors"><img src="./images/human-scissors.png">scissors</button>
 		</div>
 
-	</div>
+		<button id="play">Play</button>
 
-	<div id="choices">
-		<button id="rock">rock</button>
-		<button id="paper">paper</button>
-		<button id="scissors">scissors</button>
-	</div>
+	</main>
 
 	<script src="./script.js"></script>
 </body>
