@@ -3,8 +3,6 @@ let computerScore = 0;
 let humanScore = 0;
 
 
-
-
 // Function to get the human player's choice via buttons
 function getHumanChoice() {
 	let choices = document.querySelector('#choices');
