@@ -30,12 +30,17 @@ body {
 	justify-content: space-between;
 }
 
+.mid_box_con img {width: 100%; max-width: 200px;}
+
+.mid_box_con span {margin-top: 15px;}
+
 .btm_box_con {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	color: #fff;
 }
+
 
 .btm_box1 {
 	background-color: #76bafe;
