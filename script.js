@@ -18,7 +18,9 @@ function getHumanChoice() {
 		let humanSelection = e.target.innerText;
 
 		let playGameResult = playGame(computerSelection, humanSelection, humanWinTracker, computerWinTracker);
+		// ----------------------------------------------------
 		// console.log(`${playGameResult.result} ${playGameResult.humanWinTracker}, ${playGameResult.computerWinTracker}`);
+		// ----------------------------------------------------
 		let playRoundResult = playRound(i, humanSelection, computerSelection, playGameResult.result, playGameResult.humanWinTracker, playGameResult.computerWinTracker);
 
 		i++;
@@ -31,7 +33,6 @@ function getHumanChoice() {
 	});
 
 }
-
 
 
 // Function to randomly select the computer's choice
@@ -49,17 +50,16 @@ function getComputerChoice() {
 }
 
 
-
-
 // Function to play a single round of the game
 function playGame(humanChoice, computerChoice, humanWinTracker, computerWinTracker) {
 
 	let resultObj = [];
 
-	
 
 	if (humanChoice === computerChoice) {
+		// ----------------------------------------------------
 		// console.log(`humanChoice: ${humanChoice} | computerChoice: ${computerChoice} | humanWinTracker: ${humanWinTracker} | computerWinTracker ${computerWinTracker}`);
+		// ----------------------------------------------------
 		return resultObj = {
 			result: false,
 			humanWinTracker: humanWinTracker,
@@ -100,7 +100,6 @@ function playRound(i, humanSelection, computerSelection, playGameResult, humanWi
 	console.log(`👤 Human chose: ${humanSelection}`);
 	console.log(`🤖 Computer chose: ${computerSelection}`);
 
-
 	// ----------------------------------------------------
 	// console.log(`humanWinTracker: ${humanWinTracker}`);
 	// console.log(`computerWinTracker: ${computerWinTracker}`);
@@ -117,7 +116,6 @@ function playRound(i, humanSelection, computerSelection, playGameResult, humanWi
 	} else {
 		console.log("🤝 It's a tie!");
 	}
-	
 	
 	console.log(`Scoreboard: Human ${humanScore} - ${computerScore} Computer`);
 
