@@ -213,7 +213,8 @@ function playAgainBtn() {
 		computerChoiceImage.setAttribute('src', './images/computer-question-mark.png');
 
 		result_description.classList.remove('win');
-		result_description.classList.remove('lose')
+		result_description.classList.remove('lose');
+		result_description.textContent = 'Play the game!';
 	});
 }
 
