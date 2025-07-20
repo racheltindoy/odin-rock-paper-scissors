@@ -1,9 +1,9 @@
 // Initialize scores for computer and human players
 let computerScore = 0;
 let humanScore = 0;
+let humanChoiceLabel = document.querySelector("#human");
+let computerChoiceLabel = document.querySelector("#computer");
 
-
-const playBtn = document.querySelector('#play');
 
 
 // Function to get the human player's choice via buttons
@@ -12,12 +12,20 @@ function getHumanChoice() {
 	let i = 1;
 
 	choices.addEventListener('click', (e) => {
+		let choiceBtn = e.target.closest('button');
+		if (!choiceBtn) {return; }
+		let choice = choiceBtn.id;
+		
+		
+		humanChoiceLabel.textContent = choice;
+		computerChoiceLabel.textContent = getComputerChoice();
 
 		let humanWinTracker = false;
 		let computerWinTracker = false;
 		
 		let computerSelection = getComputerChoice();
 		let humanSelection = e.target.parentElement.id;
+		
 
 		let playGameResult = playGame(computerSelection, humanSelection, humanWinTracker, computerWinTracker);
 		// ----------------------------------------------------
@@ -132,4 +140,9 @@ function playRound(i, humanSelection, computerSelection, playGameResult, humanWi
 		return false;
 	}
 
+}
+
+
+if(getHumanChoice()) {
+	getHumanChoice();
 }
