@@ -1,21 +1,27 @@
 // Initialize scores for computer and human players
-let computerScore = 0;
 let humanScore = 0;
-let humanChoiceLabel = document.querySelector("#human");
-let computerChoiceLabel = document.querySelector("#computer");
-let roundLabel = document.querySelector('#round_label');
-let humanScoreLabel = document.querySelector('#human_score');
-let computerScoreLabel = document.querySelector('#computer_score');
+let computerScore = 0;
+let round = 1;
 
-humanScoreLabel.textContent = humanScore;
-computerScoreLabel.textContent = computerScore;
+// UI
+const humanChoiceLabel = document.querySelector("#human");
+const computerChoiceLabel = document.querySelector("#computer");
+const roundLabel = document.querySelector('#round_label');
+const humanScoreLabel = document.querySelector('#human_score');
+const computerScoreLabel = document.querySelector('#computer_score');
+const humanChoiceImage = document.querySelector('.mid_box1 img');
+const computerChoiceImage = document.querySelector('.mid_box2 img');
+const choicesBtns = document.querySelectorAll('#choices button');
+const playBtn = document.querySelector('#play');
+
+// Initialize scores for UI labels
+// humanScoreLabel.textContent = humanScore;
+// computerScoreLabel.textContent = computerScore;
+
 
 // Function to get the human player's choice via buttons
 function getHumanChoice() {
 	let choices = document.querySelector('#choices');
-	let i = 1;
-	
-	console.log(roundLabel);
 
 	choices.addEventListener('click', (e) => {
 		
@@ -24,7 +30,7 @@ function getHumanChoice() {
 
 		let choiceBtn = e.target.closest('button');
 		if (!choiceBtn) {return; }
-		if (choiceBtn) {roundLabel.textContent = 'Round ' + i;}
+		if (choiceBtn) {roundLabel.textContent = 'Round ' + round;}
 		let humanSelection = choiceBtn.id;
 		let computerSelection = getComputerChoice();
 
@@ -40,21 +46,18 @@ function getHumanChoice() {
 		// ----------------------------------------------------
 		// console.log(`${playGameResult.result} ${playGameResult.humanWinTracker}, ${playGameResult.computerWinTracker}`);
 		// ----------------------------------------------------
-		let playRoundResult = playRound(i, humanSelection, computerSelection, playGameResult.result, playGameResult.humanWinTracker, playGameResult.computerWinTracker);
+		let playRoundResult = playRound(round, humanSelection, computerSelection, playGameResult.result, playGameResult.humanWinTracker, playGameResult.computerWinTracker);
 
-		i++;
+		round++;
 
-		if(playRoundResult == false) {
-			computerScore = 0;
-			humanScore = 0;	
-			i=1;
-		}
+		
 
 		humanScoreLabel.textContent = humanScore;
 		computerScoreLabel.textContent = computerScore;
 	});
 
 }
+
 
 
 // Function to randomly select the computer's choice
@@ -76,7 +79,6 @@ function getComputerChoice() {
 function playGame(humanChoice, computerChoice, humanWinTracker, computerWinTracker) {
 
 	let resultObj = [];
-
 
 	if (humanChoice === computerChoice) {
 		// ----------------------------------------------------
@@ -117,8 +119,8 @@ function playGame(humanChoice, computerChoice, humanWinTracker, computerWinTrack
 }
 
 
-function playRound(i, humanSelection, computerSelection, playGameResult, humanWinTracker, computerWinTracker) {
-	console.log(`\n🎮 Round ${i} Results:`);
+function playRound(round, humanSelection, computerSelection, playGameResult, humanWinTracker, computerWinTracker) {
+	console.log(`\n🎮 Round ${round} Results:`);
 	console.log(`👤 Human chose: ${humanSelection}`);
 	console.log(`🤖 Computer chose: ${computerSelection}`);
 
@@ -146,24 +148,55 @@ function playRound(i, humanSelection, computerSelection, playGameResult, humanWi
 	
 	console.log(`Scoreboard: Human ${humanScore} - ${computerScore} Computer`);
 
-	if (humanScore === 5 || computerScore === 5) {
+	if (humanScore >= 5 || computerScore >= 5) {
 		console.log("\n\n-------------------------------------------------------");
 		console.log("🎉 FINAL RESULT 🎉");
 		humanScore > computerScore 
-		? console.log("🏆 YOU WIN THE GAME!") 
-		: console.log("💻 COMPUTER WINS THE GAME!");
+		? result_description.textContent = `🏆 YOU WIN THE GAME!` // console.log("🏆 YOU WIN THE GAME!") 
+		: result_description.textContent = `💻 COMPUTER WINS THE GAME!` // console.log("💻 COMPUTER WINS THE GAME!");
 		
 		console.log("-------------------------------------------------------");
-		return false;
+
+		for(let choicesBtn of choicesBtns) {
+			choicesBtn.setAttribute('disabled', 'true');
+		}
+
+		
+		playBtn.classList.remove('d_none');
+		playAgainBtn();
+
+		// return false;
 	}
 
 }
 
+
+
+
+function playAgainBtn() {
+	playBtn.addEventListener('click',  () => {
+		playBtn.classList.add('d_none');
+
+		for(let choicesBtn of choicesBtns) {
+			choicesBtn.removeAttribute('disabled');
+		}
+		computerScore = 0;
+		humanScore = 0;	
+		round=1;
+
+		humanScoreLabel.textContent = humanScore;
+		computerScoreLabel.textContent = computerScore;
+		roundLabel.textContent = 'Round ' + round;
+		
+		humanChoiceImage.setAttribute('src', './images/human-question-mark.png');
+		computerChoiceImage.setAttribute('src', './images/computer-question-mark.png');
+	});
+}
+
+
 // UI
 function updateChoicesImage(humanChoice, computerChoice) {
 	// console.log("Computer choice: " + computerChoice);
-	let humanChoiceImage = document.querySelector('.mid_box1 img');
-	let computerChoiceImage = document.querySelector('.mid_box2 img');
 
 	let humanImageURL = './images/human-' + humanChoice + '.png';
 	let computerImageURL = './images/computer-' + computerChoice + '.png';

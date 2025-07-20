@@ -83,3 +83,5 @@ h1 {text-align: center;}
 #choices button img {width: 100%; max-width: 150px; margin: 0 auto;}
 
 #play {margin: 0 auto; display: block; margin-top: 20px;}
+
+.d_none {display: none !important;}
