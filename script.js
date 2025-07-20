@@ -3,20 +3,28 @@ let computerScore = 0;
 let humanScore = 0;
 let humanChoiceLabel = document.querySelector("#human");
 let computerChoiceLabel = document.querySelector("#computer");
+let roundLabel = document.querySelector('#round_label');
+let humanScoreLabel = document.querySelector('#human_score');
+let computerScoreLabel = document.querySelector('#computer_score');
 
-
+humanScoreLabel.textContent = humanScore;
+computerScoreLabel.textContent = computerScore;
 
 // Function to get the human player's choice via buttons
 function getHumanChoice() {
 	let choices = document.querySelector('#choices');
 	let i = 1;
+	
+	console.log(roundLabel);
 
 	choices.addEventListener('click', (e) => {
+		
 		let humanWinTracker = false;
 		let computerWinTracker = false;
 
 		let choiceBtn = e.target.closest('button');
 		if (!choiceBtn) {return; }
+		if (choiceBtn) {roundLabel.textContent = 'Round ' + i;}
 		let humanSelection = choiceBtn.id;
 		let computerSelection = getComputerChoice();
 
@@ -41,6 +49,9 @@ function getHumanChoice() {
 			humanScore = 0;	
 			i=1;
 		}
+
+		humanScoreLabel.textContent = humanScore;
+		computerScoreLabel.textContent = computerScore;
 	});
 
 }
