@@ -24,7 +24,7 @@ function getHumanChoice() {
 		
 
 		humanChoiceLabel.textContent = humanSelection;
-		computerChoiceLabel.textContent = getComputerChoice();
+		computerChoiceLabel.textContent = computerSelection;
 		
 		
 		
@@ -111,6 +111,8 @@ function playRound(i, humanSelection, computerSelection, playGameResult, humanWi
 	console.log(`👤 Human chose: ${humanSelection}`);
 	console.log(`🤖 Computer chose: ${computerSelection}`);
 
+	const result_description = document.querySelector('#result_description');
+
 	// ----------------------------------------------------
 	// console.log(`humanWinTracker: ${humanWinTracker}`);
 	// console.log(`computerWinTracker: ${computerWinTracker}`);
@@ -118,13 +120,16 @@ function playRound(i, humanSelection, computerSelection, playGameResult, humanWi
 
 	if(playGameResult) {
 		if (humanWinTracker) {
+			result_description.textContent = `🏆 You won this round!`;
 			console.log("🏆 You won this round!");
 		} 
 
 		if (computerWinTracker) {
+			result_description.textContent = `💻 Computer won this round!`;
 			console.log("💻 Computer won this round!");
 		}
 	} else {
+		result_description.textContent = `🤝 It's a tie!`;
 		console.log("🤝 It's a tie!");
 	}
 	
