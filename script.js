@@ -12,21 +12,22 @@ function getHumanChoice() {
 	let i = 1;
 
 	choices.addEventListener('click', (e) => {
-		let choiceBtn = e.target.closest('button');
-		if (!choiceBtn) {return; }
-		let choice = choiceBtn.id;
-		
-		
-		humanChoiceLabel.textContent = choice;
-		computerChoiceLabel.textContent = getComputerChoice();
-
 		let humanWinTracker = false;
 		let computerWinTracker = false;
-		
+
+		let choiceBtn = e.target.closest('button');
+		if (!choiceBtn) {return; }
+		let humanSelection = choiceBtn.id;
 		let computerSelection = getComputerChoice();
-		let humanSelection = e.target.parentElement.id;
+
+		updateChoicesImage(humanSelection, computerSelection);
 		
 
+		humanChoiceLabel.textContent = humanSelection;
+		computerChoiceLabel.textContent = getComputerChoice();
+		
+		
+		
 		let playGameResult = playGame(computerSelection, humanSelection, humanWinTracker, computerWinTracker);
 		// ----------------------------------------------------
 		// console.log(`${playGameResult.result} ${playGameResult.humanWinTracker}, ${playGameResult.computerWinTracker}`);
@@ -139,6 +140,20 @@ function playRound(i, humanSelection, computerSelection, playGameResult, humanWi
 		console.log("-------------------------------------------------------");
 		return false;
 	}
+
+}
+
+// UI
+function updateChoicesImage(humanChoice, computerChoice) {
+	// console.log("Computer choice: " + computerChoice);
+	let humanChoiceImage = document.querySelector('.mid_box1 img');
+	let computerChoiceImage = document.querySelector('.mid_box2 img');
+
+	let humanImageURL = './images/human-' + humanChoice + '.png';
+	let computerImageURL = './images/computer-' + computerChoice + '.png';
+
+	humanChoiceImage.setAttribute('src', humanImageURL);
+	computerChoiceImage.setAttribute('src', computerImageURL);
 
 }
 
