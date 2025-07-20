@@ -165,9 +165,15 @@ function playRound(playGameResult, humanWinTracker, computerWinTracker) {
 		// console.log("🎉 FINAL RESULT 🎉");
 		// ----------------------------------------------------
 
-		humanScore > computerScore 
-		? result_description.textContent = `🏆 YOU WIN THE GAME!` // console.log("🏆 YOU WIN THE GAME!") 
-		: result_description.textContent = `💻 COMPUTER WINS THE GAME!` // console.log("💻 COMPUTER WINS THE GAME!");
+		if(humanScore > computerScore) {
+			result_description.textContent = `🏆 YOU WON THE GAME!`;
+			// console.log("🏆 YOU WON THE GAME!") 
+			result_description.classList.add('win');
+		} else { 
+			result_description.textContent = `🤖 COMPUTER WINS!`;
+			// console.log("💻 COMPUTER WINS THE GAME!");
+			result_description.classList.add('lose');
+		}
 		
 		// ----------------------------------------------------
 		// REMOVE THIS TO SHOW RESULTS IN CONSOLE LOG
@@ -205,6 +211,9 @@ function playAgainBtn() {
 		
 		humanChoiceImage.setAttribute('src', './images/human-question-mark.png');
 		computerChoiceImage.setAttribute('src', './images/computer-question-mark.png');
+
+		result_description.classList.remove('win');
+		result_description.classList.remove('lose')
 	});
 }
 
